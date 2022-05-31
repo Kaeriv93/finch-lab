@@ -9,5 +9,9 @@
         {% if pokemon.can_evolve %}
             <h3>This pokemon can evolve!</h3>
         {% endif %}
+        <a href="{% url 'pokemon_delete' pokemon.pk %}"><button>Delete</button>
+            <span class="icon">
+            </span>
+        </a>
     </div>
 {% endblock %}
