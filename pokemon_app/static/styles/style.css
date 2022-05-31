@@ -1,13 +1,14 @@
 body{
-    background-color: aqua;
+    background-color: #FAFAFA;
     text-align: center;
     display: flex;
-    color: orange;
+    color: #0072b1 ;
 }
 
 a{
     text-decoration: none;
     padding: 10px 15px;
+    color: black;
 }
 
 .pokemon-list{
@@ -15,6 +16,6 @@ a{
     flex-direction: row;
 }
 
-.pokemon-list img{
+.pokemon-list img, .detail_pokemon img{
     height: 150px;
 }
