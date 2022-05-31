@@ -1,0 +1,20 @@
+body{
+    background-color: aqua;
+    text-align: center;
+    display: flex;
+    color: orange;
+}
+
+a{
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.pokemon-list{
+    justify-content: center;
+    flex-direction: row;
+}
+
+.pokemon-list img{
+    height: 150px;
+}

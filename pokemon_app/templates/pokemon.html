@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Pokemon{% endblock  %}
+{% block content %}
+
+<div class="pokemon-list">
+     <h3>If working you should see Pokemon here</h3>
+    {% for pokemon in pokemons %}
+    <a href='{%url "pokemon_detail" pokemon.pk%}'><h4>{{pokemon.name}}</h4>
+    <img src="{{pokemon.sprite}}" alt="{{pokemon.name}}"/>
+    {% endfor %}
+ </div>
+{% endblock %}

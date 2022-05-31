@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock  %}
+{% block content %}
+    <div class="detail-pokemon">
+        <h1>{{pokemon.index}}</h1>
+        <h2>{{pokemon.name}}</h2>
+        <img src="{{pokemon.sprite}}" alt="{{pokemon.name}}"/>
+        <h3>{{pokemon.bio}}</h3>
+        {% if pokemon.can_evolve %}
+            <h3>This pokemon can evolve!</h3>
+        {% endif %}
+    </div>
+{% endblock %}
