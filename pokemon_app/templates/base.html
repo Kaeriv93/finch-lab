@@ -9,15 +9,19 @@
     <!-- in our html head tag add the following  -->
 <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
 <script src="{% static 'scripts/app.js' %}" defer></script>
+<script src="https://kit.fontawesome.com/a2ea15f2f7.js" crossorigin="anonymous"></script>
+<link href="http://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+                
 
     <title>Pokemon - {% block title %}{% endblock %}</title>
 </head>
+
 <nav>
     <a href="/">Home</a>
     <a href="/pokemon/">Pokemon List</a>
     <a href="{% url 'pokemon_create' %}">Add Pokemon</a>
 </nav>
-<body>
+<br/>
     {% block content%}{% endblock %}
 </body>
 </html>

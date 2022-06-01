@@ -10,7 +10,7 @@
             <div class="pokemon-name">
                 <h4>{{pokemon.name}}</h4>
                 <img src="{{pokemon.sprite}}" alt ="{{pokemon.name}}"/>
-                <a href="{% url 'group_pokemon_assoc' group.pk pokemon.pk%}?assoc=remove"><button>Remove</button></a>
+                <a href="{% url 'group_pokemon_assoc' group.pk pokemon.pk%}?assoc=remove"><i class="fa-solid fa-trash-can"></i></a>
             </div>
             {% endfor %}
         </div>

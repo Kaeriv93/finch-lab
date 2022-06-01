@@ -1,8 +1,13 @@
 body{
     background-color: #FAFAFA;
     text-align: center;
-    display: flex;
+    /* display: flex; */
     color: #0072b1 ;
+}
+
+
+nav{
+  float: left;
 }
 
 a{
@@ -14,6 +19,7 @@ a{
 
 .pokemon-list{
     justify-content: center;
+    display: inline-flex;
     flex-direction: row;
 }
 
@@ -30,4 +36,19 @@ a{
     display: flex;
     padding: 10px;
     justify-content: space-between;
+}
+
+.pokemon-group{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+hr{
+    border-color: red;
+}
+
+.fa-trash-can button{
+    border: none;
+    background-color: white;
 }
