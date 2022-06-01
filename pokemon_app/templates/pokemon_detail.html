@@ -11,22 +11,6 @@
             <h3>This pokemon can evolve!</h3>
         {% endif %}
         <div class="moves-container">
-            <form action="{% url 'move_create' pokemon.pk %}" method="post">
-                {% csrf_token %}
-                <div>
-                    <input type ='text' name="name" placeholder="name" required/>
-                </div>
-                <div>
-                    <input type ='text' name="type" placeholder="type" required/>
-                </div>
-                <div>
-                    <input type ='number' name ='power' placeholder="Attack Power" required/>
-                </div>
-                <div>
-                    <input type = 'submit' value="Add Move"/>
-                </div>
-
-            </form>
             <h3>Moves List</h3>
             {% for move in pokemon.moves.all %}
             <div class ='moves-list'>
@@ -40,9 +24,25 @@
             </div>
             {% endfor %}
         </div>
+        <form action="{% url 'move_create' pokemon.pk %}" method="post">
+            {% csrf_token %}
+            <div>
+                <input type ='text' name="name" placeholder="name" required/>
+            </div>
+            <div>
+                <input type ='text' name="type" placeholder="type" required/>
+            </div>
+            <div>
+                <input type ='number' name ='power' placeholder="Attack Power" required/>
+            </div>
+            <div>
+                <input type = 'submit' value="Add Move"/>
+            </div>
+    
+        </form>
         <a href="{% url 'pokemon_delete' pokemon.pk %}"><button>Delete</button>
             <span class="icon">
             </span>
         </a>
     </div>
-{% endblock %}
+    {% endblock %}

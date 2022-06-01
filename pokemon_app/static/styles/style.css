@@ -25,3 +25,9 @@ a{
     width: 50%;
     margin: 0 auto;
 }
+
+.moves-list{
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}

@@ -6,11 +6,16 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.shortcuts import redirect
-from .models import Pokemon, Move
+from .models import Pokemon, Move, Group
 from django.urls import reverse
 
 class Home(TemplateView):
     template_name = 'home.html'
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['groups'] = Group.objects.all()
+        return context
     
 class PokemonList(TemplateView):
     template_name = 'pokemon.html'
