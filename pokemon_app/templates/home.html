@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock  %}
 {% block content %}
-    <h1>Pokemon!</h1>
+    <div class="pokemon-group">
+        {% for group in groups %}
+        <div class="group-name">
+            <h3>{{group.name}}</h3>
+            <hr/>
+            {% for pokemon in group.pokemons.all %}
+            <div class="pokemon-name">
+                <h4>{{pokemon.name}}</h4>
+                <img src="{{pokemon.sprite}}" alt ="{{pokemon.name}}"/>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}
         
