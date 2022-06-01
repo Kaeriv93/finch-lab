@@ -5,10 +5,41 @@
         <h2>ID:{{pokemon.index}}</h2>
         <h2>Name:{{pokemon.name}}</h2>
         <img src="{{pokemon.sprite}}" alt="{{pokemon.name}}"/>
-        <h3>Description:{{pokemon.bio}}</h3>
+        <h3>Description:</h3>
+        <h3>{{pokemon.bio}}</h3>
         {% if pokemon.can_evolve %}
             <h3>This pokemon can evolve!</h3>
         {% endif %}
+        <div class="moves-container">
+            <form action="{% url 'move_create' pokemon.pk %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <input type ='text' name="name" placeholder="name" required/>
+                </div>
+                <div>
+                    <input type ='text' name="type" placeholder="type" required/>
+                </div>
+                <div>
+                    <input type ='number' name ='power' placeholder="Attack Power" required/>
+                </div>
+                <div>
+                    <input type = 'submit' value="Add Move"/>
+                </div>
+
+            </form>
+            <h3>Moves List</h3>
+            {% for move in pokemon.moves.all %}
+            <div class ='moves-list'>
+                <h4>Name: {{move.name}}</h4>
+                <h4>Type:{{move.type}}</h4>
+                <h4>Attack:{{move.power}}</h4>
+            </div>
+            {% empty %}
+            <div>
+                <h3>No moves yet</h3>
+            </div>
+            {% endfor %}
+        </div>
         <a href="{% url 'pokemon_delete' pokemon.pk %}"><button>Delete</button>
             <span class="icon">
             </span>

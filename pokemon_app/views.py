@@ -5,7 +5,8 @@ from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
-from .models import Pokemon
+from django.shortcuts import redirect
+from .models import Pokemon, Move
 from django.urls import reverse
 
 class Home(TemplateView):
@@ -41,3 +42,14 @@ class PokemonDelete(DeleteView):
     model = Pokemon
     template_name = 'pokemon_delete_confirmation.html'
     success_url = '/pokemon/'
+    
+class MoveCreate(View):
+    def post(self,request, pk):
+        name = request.POST.get('name')
+        type = request.POST.get('type')
+        power = request.POST.get('power')
+        pokemon = Pokemon.objects.get(pk=pk)
+        Move.objects.create(name = name, type = type, power = power, pokemon = pokemon)
+        return redirect('pokemon_detail', pk=pk)
+        
+        

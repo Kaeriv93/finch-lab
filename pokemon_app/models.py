@@ -13,3 +13,12 @@ class Pokemon(models.Model):
     
     class Meta:
         ordering =['index']
+        
+class Move(models.Model):
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    power = models.IntegerField(default= 0)
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE, related_name="moves")
+    
+    def __str__(self):
+        return self.name
