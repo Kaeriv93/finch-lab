@@ -3,7 +3,7 @@ body{
     text-align: center;
     font-family: 'Russo One', sans-serif;
     color: white;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 
@@ -38,6 +38,7 @@ a{
 .detail-pokemon{
     width: 50%;
     margin: 0 auto;
+    font-size: 20px;
 }
 
 .moves-list{
