@@ -33,7 +33,12 @@ class PokemonCreate(CreateView):
 
 class PokemonDetail(DetailView):
     model = Pokemon
-    template_name = 'pokemon_detail.html' 
+    template_name = 'pokemon_detail.html'
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['groups']= Group.objects.all()
+        return context
     
 class PokemonUpdate(UpdateView):
     model = Pokemon
@@ -58,3 +63,12 @@ class MoveCreate(View):
         return redirect('pokemon_detail', pk=pk)
         
         
+class GroupPokemonAssoc(View):
+    def get(self,request,pk,pokemon_pk):
+        assoc = request.GET.get("assoc")
+        if assoc == "remove":
+            Group.objects.get(pk=pk).pokemons.remove(pokemon_pk)
+        if assoc == "add":
+            Group.objects.get(pk=pk).pokemons.add(pokemon_pk)
+        return redirect('home')
+    

@@ -40,9 +40,9 @@
             </div>
     
         </form>
+        <a href="{% url 'pokemon_update' pokemon.pk %}"><button>Update</button>
+        </a>
         <a href="{% url 'pokemon_delete' pokemon.pk %}"><button>Delete</button>
-            <span class="icon">
-            </span>
         </a>
     </div>
     {% endblock %}
