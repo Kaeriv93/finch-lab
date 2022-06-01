@@ -40,6 +40,15 @@
             </div>
     
         </form>
+        <div class="add-group">
+            Add to group!
+            <div>
+                {% for group in groups %}
+                <a href="{% url 'group_pokemon_assoc' group.pk pokemon.pk %}?assoc=add"><button>{{group.name}}</button></a>
+                {% endfor %}
+            </div>
+        </div>
+        <br/>
         <a href="{% url 'pokemon_update' pokemon.pk %}"><button>Update</button>
         </a>
         <a href="{% url 'pokemon_delete' pokemon.pk %}"><button>Delete</button>
