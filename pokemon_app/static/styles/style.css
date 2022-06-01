@@ -1,19 +1,27 @@
 body{
-    background-color: #FAFAFA;
+    background-color: #414A4C;
     text-align: center;
-    /* display: flex; */
-    color: #0072b1 ;
+    font-family: 'Russo One', sans-serif;
+    color: white;
+    font-size: 24px;
 }
 
 
 nav{
-  float: left;
+    background-color: #AB263A;
+    overflow: hidden;
+    font-family: 'Russo One', sans-serif;
+    border-radius: 32px;
+}
+
+nav a{
+    font-size: 24px;
 }
 
 a{
     text-decoration: none;
     padding: 10px 15px;
-    color: black;
+    color: white;
     margin-top: 10px;
 }
 
@@ -39,9 +47,9 @@ a{
 }
 
 .pokemon-group{
-    display: inline-flex;
+    /* display: inline-flex; */
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 hr{
