@@ -62,7 +62,20 @@ class MoveCreate(View):
         Move.objects.create(name = name, type = type, power = power, pokemon = pokemon)
         return redirect('pokemon_detail', pk=pk)
         
-        
+class GroupCreate(CreateView):
+    model = Group
+    fields = ['name']
+    template_name ='group_create.html'
+    success_url = '/pokemon/'
+
+
+# class PokemonCreate(CreateView):
+#     model = Pokemon
+#     fields = ['name', 'sprite', 'index', 'bio', 'can_evolve']
+#     template_name = 'pokemon_create.html'
+#     success_url = '/pokemon/'
+
+
 class GroupPokemonAssoc(View):
     def get(self,request,pk,pokemon_pk):
         assoc = request.GET.get("assoc")

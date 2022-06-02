@@ -10,4 +10,5 @@ urlpatterns =[
     path('pokemon/<int:pk>/delete', views.PokemonDelete.as_view(), name='pokemon_delete'),
     path('pokemon/<int:pk>/moves/new', views.MoveCreate.as_view(), name='move_create'),
     path('groups/<int:pk>/pokemons/<int:pokemon_pk>/', views.GroupPokemonAssoc.as_view(), name ='group_pokemon_assoc'),
+    path('groups/', views.GroupCreate.as_view(), name ='group_create'),
 ]
