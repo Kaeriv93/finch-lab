@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-di8aoy6=f#b!!g3awgubh0l=7_hc(3@3y!y7e#%4)&z4x62@3*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -112,6 +112,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'pokemon_app/static')]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Add this variable to specify where successful logins should redirect to
+LOGIN_REDIRECT_URL = '/pokemon/'
+LOGOUT_REDIRECT_URL = '/accounts/login'
 
 # Configure Django App for Heroku.
 
