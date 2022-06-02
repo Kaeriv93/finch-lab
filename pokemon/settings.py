@@ -115,3 +115,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configure Django App for Heroku.
 
+# Add this variable to specify where successful logins should redirect to
+LOGIN_REDIRECT_URL = '/artists/'
+LOGOUT_REDIRECT_URL ='/'
