@@ -11,6 +11,10 @@ from django.urls import reverse
 # at top of file with other imports
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+# Auth
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 
 class Home(TemplateView):
@@ -21,17 +25,17 @@ class Home(TemplateView):
         context['groups'] = Group.objects.all()
         return context
     
+@method_decorator(login_required, name='dispatch')
 class PokemonList(TemplateView):
     template_name = 'pokemon.html'
-    
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get('name')
         if name != None:
-            context['pokemon'] = Pokemon.objects.filter(
+            context['pokemons'] = Pokemon.objects.filter(
                 name__icontains=name, user=self.request.user)
         else:
-            context['pokemon'] = Pokemon.objects.filter(user = self.request.user)
+            context['pokemons'] = Pokemon.objects.filter(user = self.request.user)
         return context
 
 class PokemonCreate(CreateView):
@@ -77,7 +81,12 @@ class MoveCreate(View):
         pokemon = Pokemon.objects.get(pk=pk)
         Move.objects.create(name = name, type = type, power = power, pokemon = pokemon)
         return redirect('pokemon_detail', pk=pk)
-        
+
+class GroupCreate(CreateView):
+    model = Group
+    fields = ['name']
+    template_name = 'group_create.html'
+    success_url = '/'
         
 class GroupPokemonAssoc(View):
     def get(self,request,pk,pokemon_pk):
@@ -98,7 +107,7 @@ class Signup(View):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("pokemon_list")
+            return redirect("/")
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
