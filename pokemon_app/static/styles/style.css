@@ -71,3 +71,13 @@ button, input[type=submit] {
     display: inline-block;
     font-size: 16px;
   }
+
+button:hover, input[type=submit]:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
+form{
+    width: 30%;
+    margin: 0 auto;
+}
