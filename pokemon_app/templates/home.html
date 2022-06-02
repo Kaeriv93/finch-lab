@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock  %}
 {% block content %}
+    {% if user.is_authenticated %}
     <div class="pokemon-group">
         {% for group in groups %}
         <div class="group-name">
@@ -17,6 +18,11 @@
         {% empty %}
         <h2>Add A Group!</h2>
         {% endfor %}
+        {% else %}
+        <div>
+            <h2>Welcome to the world of Pokemon! Log in to get started!</h2>
+        </div>
+        {% endif %}
     </div>
 {% endblock %}
         
