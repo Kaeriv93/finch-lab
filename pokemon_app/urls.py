@@ -13,3 +13,5 @@ urlpatterns =[
     path('groups/', views.GroupCreate.as_view(), name ='group_create'),
     path('accounts/signup/', views.Signup.as_view(), name='signup')
 ]
+
+

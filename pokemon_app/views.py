@@ -8,10 +8,8 @@ from django.views.generic import DetailView
 from django.shortcuts import redirect
 from .models import Pokemon, Move, Group
 from django.urls import reverse
-# at top of file with other imports
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-# Auth
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
