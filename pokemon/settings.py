@@ -113,9 +113,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'pokemon_app/static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Add this variable to specify where successful logins should redirect to
-LOGIN_REDIRECT_URL = '/pokemon/'
-LOGOUT_REDIRECT_URL = '/accounts/login'
-
 # Configure Django App for Heroku.
 

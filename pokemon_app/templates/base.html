@@ -17,17 +17,9 @@
 </head>
 
 <nav>
-    {% if user.is_authenticated %}
-            <span>Welcome: {{user.username}}</span>
-            <a href="{% url 'logout' %}">Logout</a>
-            <a href="/">Home</a>
-            <a href="/pokemon/">Pokemon List</a>
-            <a href="{% url 'pokemon_create' %}">Add Pokemon</a>
-            <a href="/groups/">Add Group</a>
-        {% else %}
-            <a href="{% url 'login' %}">Log In</a>
-            <a href="{% url 'signup' %}">Sign up</a>
-        {% endif %}
+    <a href="/">Home</a>
+    <a href="/pokemon/">Pokemon List</a>
+    <a href="{% url 'pokemon_create' %}">Add Pokemon</a>
 </nav>
 <br/>
     {% block content%}{% endblock %}

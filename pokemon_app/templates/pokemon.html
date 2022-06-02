@@ -6,8 +6,6 @@
     {% for pokemon in pokemons %}
     <a href='{%url "pokemon_detail" pokemon.pk%}'><h4>{{pokemon.name}}</h4>
     <img src="{{pokemon.sprite}}" alt="{{pokemon.name}}"/>
-    {% empty %}
-     <h2>Add Some Pokemon we don't have any yet!</h2>
     {% endfor %}
  </div>
 {% endblock %}
