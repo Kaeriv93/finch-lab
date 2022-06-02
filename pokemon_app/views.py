@@ -6,7 +6,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.shortcuts import redirect
-from .models import Pokemon, Move, Group
+from .models import Pokemon, Move, Group, Comment
 from django.urls import reverse
 
 class Home(TemplateView):
