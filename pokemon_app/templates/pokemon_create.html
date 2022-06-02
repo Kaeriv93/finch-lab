@@ -5,8 +5,10 @@
     <h1>Add a new pokemon!</h1>
     
     <form method="post">
-      {% csrf_token %} 
-      {{form.as_p}} 
+      {% csrf_token %}
+      <label>
+        {{form.as_p}} 
+      </labeL> 
       <input type="submit" value="Submit" />
     </form>
 </div>
