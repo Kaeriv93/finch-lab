@@ -17,6 +17,14 @@
 </head>
 
 <nav>
+    {% if user.is_authenticated %}
+        <div>
+            <span>Welcome: {{user.username}}</span>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+        {% else %}
+            <a href="{% url 'login' %}">Log In</a>
+        {% endif %}
     <a href="/">Home</a>
     <a href="/pokemon/">Pokemon List</a>
     <a href="{% url 'pokemon_create' %}">Add Pokemon</a>

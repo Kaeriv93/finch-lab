@@ -22,7 +22,16 @@ class PokemonList(TemplateView):
     
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        context['pokemons'] = Pokemon.objects.all()
+        name = self.request.GET.get('name')
+        if name != None:
+            context['pokemons'] = Pokemon.objects.filter(
+                name_icontains= name, user=self.request.user)
+            context['header'] = f"Searching for {name}"
+            
+        else:
+            context['pokemons'] = Pokemon.objects.filter(user = self.request.user)
+            context['header'] ='Pokemon!'
+        # context['pokemons'] = Pokemon.objects.all()
         return context
 
 class PokemonCreate(CreateView):
@@ -30,6 +39,10 @@ class PokemonCreate(CreateView):
     fields = ['name', 'sprite', 'index', 'bio', 'can_evolve']
     template_name = 'pokemon_create.html'
     success_url = '/pokemon/'
+    
+    def form_valid(self,form):
+        print(self.kwargs)
+        return reverse('pokemon_detail', kwargs={'pk': self.object.pk})
 
 class PokemonDetail(DetailView):
     model = Pokemon
