@@ -3,7 +3,7 @@ body{
     text-align: center;
     font-family: 'Russo One', sans-serif;
     color: white;
-    font-size: 20px;
+    font-size: 12px;
 }
 
 
@@ -15,7 +15,7 @@ nav{
 }
 
 nav a{
-    font-size: 24px;
+    font-size: 15px;
 }
 
 a{
@@ -71,3 +71,8 @@ button, input[type=submit] {
     display: inline-block;
     font-size: 16px;
   }
+
+form{
+    width: 30%;
+    margin: 0 auto;
+}

@@ -6,8 +6,14 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.shortcuts import redirect
-from .models import Pokemon, Move, Group, Comment
+from .models import Pokemon, Move, Group
 from django.urls import reverse
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+
 
 class Home(TemplateView):
     template_name = 'home.html'
@@ -16,7 +22,8 @@ class Home(TemplateView):
         context = super().get_context_data(**kwargs)
         context['groups'] = Group.objects.all()
         return context
-    
+
+@method_decorator(login_required, name='dispatch')
 class PokemonList(TemplateView):
     template_name = 'pokemon.html'
     
@@ -82,13 +89,6 @@ class GroupCreate(CreateView):
     success_url = '/pokemon/'
 
 
-# class PokemonCreate(CreateView):
-#     model = Pokemon
-#     fields = ['name', 'sprite', 'index', 'bio', 'can_evolve']
-#     template_name = 'pokemon_create.html'
-#     success_url = '/pokemon/'
-
-
 class GroupPokemonAssoc(View):
     def get(self,request,pk,pokemon_pk):
         assoc = request.GET.get("assoc")
@@ -98,3 +98,34 @@ class GroupPokemonAssoc(View):
             Group.objects.get(pk=pk).pokemons.add(pokemon_pk)
         return redirect('home')
     
+class Signup(View):
+    def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)
+    def post(self,request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request,user)
+            return redirect('pokemon_list')
+        else:
+            context = {"form": form}
+            return render(request, "registration/signup.html", context)
+        
+# class Signup(View):
+#     # show a form to fill out
+#     def get(self, request):
+#         form = UserCreationForm()
+#         context = {"form": form}
+#         return render(request, "registration/signup.html", context)
+#     # on form ssubmit validate the form and login the user.
+#     def post(self, request):
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             return redirect("artist_list")
+#         else:
+#             context = {"form": form}
+#             return render(request, "registration/signup.html", context)
