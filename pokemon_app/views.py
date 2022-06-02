@@ -6,8 +6,12 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.shortcuts import redirect
-from .models import Pokemon, Move, Group, Comment
+from .models import Pokemon, Move, Group
 from django.urls import reverse
+# at top of file with other imports
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+
 
 class Home(TemplateView):
     template_name = 'home.html'
@@ -22,7 +26,12 @@ class PokemonList(TemplateView):
     
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        context['pokemons'] = Pokemon.objects.all()
+        name = self.request.GET.get('name')
+        if name != None:
+            context['pokemon'] = Pokemon.objects.filter(
+                name__icontains=name, user=self.request.user)
+        else:
+            context['pokemon'] = Pokemon.objects.filter(user = self.request.user)
         return context
 
 class PokemonCreate(CreateView):
@@ -30,6 +39,13 @@ class PokemonCreate(CreateView):
     fields = ['name', 'sprite', 'index', 'bio', 'can_evolve']
     template_name = 'pokemon_create.html'
     success_url = '/pokemon/'
+    
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        return super(PokemonCreate,self).form_valid(form)
+    def get_success_url(self):
+        print(self.kwargs)
+        return reverse('pokemon_detail', kwargs={'pk': self.object.pk})
 
 class PokemonDetail(DetailView):
     model = Pokemon
@@ -72,3 +88,17 @@ class GroupPokemonAssoc(View):
             Group.objects.get(pk=pk).pokemons.add(pokemon_pk)
         return redirect('home')
     
+class Signup(View):
+    def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("pokemon_list")
+        else:
+            context = {"form": form}
+            return render(request, "registration/signup.html", context)
